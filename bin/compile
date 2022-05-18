@@ -363,7 +363,7 @@ prune_devdependencies() {
   if $YARN || $YARN_2; then
     yarn_prune_devdependencies "$BUILD_DIR" "$YARN_CACHE_FOLDER"
   elif $PNPM; then
-    echo "Not pruning when using pnpm"
+    echo "Not pruning when using pnpm" | output "$LOG_FILE"
   else
     npm_prune_devdependencies "$BUILD_DIR"
   fi
@@ -385,8 +385,8 @@ elif $PNPM; then
   meta_set "build-step" "save-cache"
   cache_build | output "$LOG_FILE"
   meta_set "build-step" "prune-dependencies"
-  header "Pruning devDependencies" | output "$LOG_FILE"
-  prune_devdependencies | output "$LOG_FILE"
+  header "PNPM Not Pruning devDependencies" | output "$LOG_FILE"
+  #prune_devdependencies | output "$LOG_FILE"
 else
   meta_set "build-step" "save-cache"
   cache_build | output "$LOG_FILE"
