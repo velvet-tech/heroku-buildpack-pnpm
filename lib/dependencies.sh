@@ -146,7 +146,7 @@ pnpm_node_modules() {
 
   echo "Installing node modules (pnpm-lock.yaml)"
   cd "$build_dir" || return
-  monitor "pnpm-install" NODE_ENV=dev; pnpm install
+  NODE_ENV=dev monitor "pnpm-install" pnpm install
 }
 
 yarn_2_install() {
